@@ -29,11 +29,12 @@ STATS_SVG = os.environ.get("STATS_SVG", "img/stats.svg")
 def write_stats(cc):
     """Own stats card: the public card services only see public repos; the calendar here counts private ones too."""
     rows = [("Tổng đóng góp (1 năm)", cc["contributionCalendar"]["totalContributions"]),
-            ("Đóng góp ở repo riêng tư", cc["restrictedContributionsCount"]),
-            ("Commit (repo công khai)", cc["totalCommitContributions"]),
+            ("Commit", cc["totalCommitContributions"]),
             ("Pull request", cc["totalPullRequestContributions"]),
             ("Review", cc["totalPullRequestReviewContributions"]),
-            ("Issue", cc["totalIssueContributions"])]
+            ("Repo đã commit", cc["totalRepositoriesWithContributedCommits"])]
+    if cc["restrictedContributionsCount"]:  # only when the token cannot see the private repos themselves
+        rows.insert(1, ("Đóng góp ở repo riêng tư", cc["restrictedContributionsCount"]))
     h = 60 + 26 * len(rows)
     body = "".join(f'<text class="l" x="25" y="{62 + 26 * i}">{k}</text><text class="v" x="390" y="{62 + 26 * i}" '
                    f'text-anchor="end">{v:,}</text>' for i, (k, v) in enumerate(rows))

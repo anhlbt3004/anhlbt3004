@@ -20,7 +20,29 @@ README = os.environ.get("README", "README.md")
 START, END = "<!-- START_SECTION:ascii_graph -->", "<!-- END_SECTION:ascii_graph -->"
 
 QUERY = """query($u:String!,$f:DateTime!,$t:DateTime!){user(login:$u){contributionsCollection(from:$f,to:$t){
- contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}"""
+ totalCommitContributions totalPullRequestContributions totalPullRequestReviewContributions totalIssueContributions
+ restrictedContributionsCount totalRepositoriesWithContributedCommits
+ contributionCalendar{totalContributions weeks{contributionDays{date contributionCount}}}}}}"""
+STATS_SVG = os.environ.get("STATS_SVG", "img/stats.svg")
+
+
+def write_stats(cc):
+    """Own stats card: the public card services only see public repos; the calendar here counts private ones too."""
+    rows = [("Tổng đóng góp (1 năm)", cc["contributionCalendar"]["totalContributions"]),
+            ("Đóng góp ở repo riêng tư", cc["restrictedContributionsCount"]),
+            ("Commit (repo công khai)", cc["totalCommitContributions"]),
+            ("Pull request", cc["totalPullRequestContributions"]),
+            ("Review", cc["totalPullRequestReviewContributions"]),
+            ("Issue", cc["totalIssueContributions"])]
+    h = 60 + 26 * len(rows)
+    body = "".join(f'<text class="l" x="25" y="{62 + 26 * i}">{k}</text><text class="v" x="390" y="{62 + 26 * i}" '
+                   f'text-anchor="end">{v:,}</text>' for i, (k, v) in enumerate(rows))
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="420" height="{h}" viewBox="0 0 420 {h}">'
+           '<style>text{font:600 14px "Segoe UI",Ubuntu,Sans-Serif}.t{font-size:18px;fill:#2f80ed}.l{fill:#434d58}'
+           '.v{fill:#333}@media (prefers-color-scheme:dark){.l{fill:#9fa8b3}.v{fill:#e6edf3}.t{fill:#58a6ff}}</style>'
+           f'<text class="t" x="25" y="32">Thống kê GitHub của Tuấn Anh</text>{body}</svg>')
+    os.makedirs(os.path.dirname(STATS_SVG) or ".", exist_ok=True)
+    open(STATS_SVG, "w", encoding="utf-8").write(svg)
 
 
 def fetch_days(now):
@@ -31,7 +53,9 @@ def fetch_days(now):
     data = json.load(urllib.request.urlopen(req, timeout=30))
     if "errors" in data:
         sys.exit(f"GraphQL error: {data['errors']}")
-    weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+    cc = data["data"]["user"]["contributionsCollection"]
+    write_stats(cc)
+    weeks = cc["contributionCalendar"]["weeks"]
     return {d["date"]: d["contributionCount"] for w in weeks for d in w["contributionDays"]}
 
 

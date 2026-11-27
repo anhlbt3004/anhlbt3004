@@ -57,6 +57,15 @@
   </tr>
 </table>
 
+<h2 align="left">Coding Activity</h2>
+
+> Tổng đóng góp GitHub tích luỹ trong 7 ngày gần nhất (commit, PR, review; gồm cả repo riêng tư). Cập nhật mỗi giờ.
+
+<!-- prettier-ignore-start -->
+<!-- START_SECTION:ascii_graph -->
+<!-- END_SECTION:ascii_graph -->
+<!-- prettier-ignore-end -->
+
 <h2 align="left">Hoạt động</h2>
 
 > Đóng góp trên GitHub (gồm cả repo riêng tư), tự cập nhật.

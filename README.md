@@ -6,7 +6,7 @@
   <a href="https://github.com/anhlbt3004?tab=followers"><img alt="GitHub followers" src="https://img.shields.io/github/followers/anhlbt3004?style=flat&logo=github"></a>
 </p>
 
-<a href="#anhlbt-title"><img src="https://github-readme-stats.vercel.app/api?username=anhlbt3004&show_icons=true&hide_border=true&bg_color=00000000&count_private=true" alt="anhlbt3004 stats" align="right" /></a>
+<a href="#anhlbt-title"><img src="./img/stats.svg" alt="anhlbt3004 stats" align="right" /></a>
 
 - :office: &nbsp;Đang làm tại **ICHIBA**: nền tảng cross-border commerce (OMS, WMS, marketplace, storefront)
 - :seedling: &nbsp;Đang làm **bộ điều phối đơn hàng (saga)**, POS, chuyển kho và logistics nâng cao
@@ -63,26 +63,6 @@
 
 <!-- prettier-ignore-start -->
 <!-- START_SECTION:ascii_graph -->
-
-```
-4,977 đóng góp ┤                                                                                                 ╭──
-4,896 đóng góp ┤                                                                                  ╭──────────────╯  
-4,814 đóng góp ┤                                                                                  │                 
-4,733 đóng góp ┤                                                                                  │                 
-4,652 đóng góp ┤                                                                    ╭─────────────╯                 
-4,571 đóng góp ┤                                                                    │                               
-4,489 đóng góp ┤                                                                    │                               
-4,408 đóng góp ┤                                        ╭───────────────────────────╯                               
-4,327 đóng góp ┤                         ╭──────────────╯                                                           
-4,246 đóng góp ┤                         │                                                                          
-4,164 đóng góp ┤           ╭─────────────╯                                                                          
-4,083 đóng góp ┼───────────╯                                                                                        
-               ┼─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─┤
-              -7d           -6d           -5d           -4d           -3d           -2d           -1d           now
-```
-
-<sub>Cập nhật 27/11/2026 10:03 (GMT+7)</sub>
-
 <!-- END_SECTION:ascii_graph -->
 <!-- prettier-ignore-end -->
 

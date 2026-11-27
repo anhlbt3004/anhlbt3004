@@ -1,7 +1,7 @@
 name: Update coding activity
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "7 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
